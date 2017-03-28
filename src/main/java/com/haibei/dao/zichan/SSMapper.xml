@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haibei.dao.zichan.SSMapper" >
+  <resultMap id="BaseResultMap" type="com.haibei.pojo.zichan.SS" >
+    <id column="WID" property="wid" jdbcType="DECIMAL" />
+    <result column="PWID" property="pwid" jdbcType="DECIMAL" />
+    <result column="SSBH" property="ssbh" jdbcType="VARCHAR" />
+    <result column="SSLDM" property="ssldm" jdbcType="VARCHAR" />
+    <result column="LC" property="lc" jdbcType="DECIMAL" />
+    <result column="DY" property="dy" jdbcType="VARCHAR" />
+    <result column="FJH" property="fjh" jdbcType="VARCHAR" />
+    <result column="DH" property="dh" jdbcType="VARCHAR" />
+    <result column="CWS" property="cws" jdbcType="DECIMAL" />
+    <result column="ZJ" property="zj" jdbcType="DECIMAL" />
+    <result column="FJLXDM" property="fjlxdm" jdbcType="VARCHAR" />
+    <result column="MXXSCC" property="mxxscc" jdbcType="VARCHAR" />
+    <result column="MXXSXBDM" property="mxxsxbdm" jdbcType="VARCHAR" />
+    <result column="SFKZAPZS" property="sfkzapzs" jdbcType="VARCHAR" />
+    <result column="CX" property="cx" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="CLRQ" property="clrq" jdbcType="TIMESTAMP" />
+    <result column="CZLX" property="czlx" jdbcType="VARCHAR" />
+    <result column="CZZ" property="czz" jdbcType="VARCHAR" />
+    <result column="SJLY" property="sjly" jdbcType="VARCHAR" />
+    <result column="SJBBH" property="sjbbh" jdbcType="DECIMAL" />
+    <result column="SCBZ" property="scbz" jdbcType="VARCHAR" />
+    <result column="BY1" property="by1" jdbcType="VARCHAR" />
+    <result column="BY2" property="by2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    WID, PWID, SSBH, SSLDM, LC, DY, FJH, DH, CWS, ZJ, FJLXDM, MXXSCC, MXXSXBDM, SFKZAPZS, 
+    CX, BZ, CLRQ, CZLX, CZZ, SJLY, SJBBH, SCBZ, BY1, BY2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.haibei.pojo.zichan.SSExample" >
+    <include refid="common.Oracle_Pagination_Head" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_SS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Oracle_Pagination_Tail" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_SS
+    where WID = #{wid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_SS
+    where WID = #{wid}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.haibei.pojo.zichan.SSExample" >
+    delete from T_SS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.haibei.pojo.zichan.SS" >
+    insert into T_SS (WID, PWID, SSBH, SSLDM, LC, DY, FJH, DH, CWS, 
+      ZJ, FJLXDM, MXXSCC, MXXSXBDM, SFKZAPZS, CX, BZ, CLRQ, CZLX, 
+      CZZ, SJLY, SJBBH, SCBZ, BY1, BY2)
+    values (#{wid}, #{pwid}, #{ssbh}, #{ssldm}, #{lc}, #{dy}, #{fjh}, #{dh}, #{cws}, 
+      #{zj}, #{fjlxdm}, #{mxxscc}, #{mxxsxbdm}, #{sfkzapzs}, #{cx}, #{bz}, #{clrq}, #{czlx}, 
+      #{czz}, #{sjly}, #{sjbbh}, #{scbz}, #{by1}, #{by2})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haibei.pojo.zichan.SS" >
+    insert into T_SS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        WID,
+      </if>
+      <if test="pwid != null" >
+        PWID,
+      </if>
+      <if test="ssbh != null" >
+        SSBH,
+      </if>
+      <if test="ssldm != null" >
+        SSLDM,
+      </if>
+      <if test="lc != null" >
+        LC,
+      </if>
+      <if test="dy != null" >
+        DY,
+      </if>
+      <if test="fjh != null" >
+        FJH,
+      </if>
+      <if test="dh != null" >
+        DH,
+      </if>
+      <if test="cws != null" >
+        CWS,
+      </if>
+      <if test="zj != null" >
+        ZJ,
+      </if>
+      <if test="fjlxdm != null" >
+        FJLXDM,
+      </if>
+      <if test="mxxscc != null" >
+        MXXSCC,
+      </if>
+      <if test="mxxsxbdm != null" >
+        MXXSXBDM,
+      </if>
+      <if test="sfkzapzs != null" >
+        SFKZAPZS,
+      </if>
+      <if test="cx != null" >
+        CX,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="clrq != null" >
+        CLRQ,
+      </if>
+      <if test="czlx != null" >
+        CZLX,
+      </if>
+      <if test="czz != null" >
+        CZZ,
+      </if>
+      <if test="sjly != null" >
+        SJLY,
+      </if>
+      <if test="sjbbh != null" >
+        SJBBH,
+      </if>
+      <if test="scbz != null" >
+        SCBZ,
+      </if>
+      <if test="by1 != null" >
+        BY1,
+      </if>
+      <if test="by2 != null" >
+        BY2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        #{wid},
+      </if>
+      <if test="pwid != null" >
+        #{pwid},
+      </if>
+      <if test="ssbh != null" >
+        #{ssbh},
+      </if>
+      <if test="ssldm != null" >
+        #{ssldm},
+      </if>
+      <if test="lc != null" >
+        #{lc},
+      </if>
+      <if test="dy != null" >
+        #{dy},
+      </if>
+      <if test="fjh != null" >
+        #{fjh},
+      </if>
+      <if test="dh != null" >
+        #{dh},
+      </if>
+      <if test="cws != null" >
+        #{cws},
+      </if>
+      <if test="zj != null" >
+        #{zj},
+      </if>
+      <if test="fjlxdm != null" >
+        #{fjlxdm},
+      </if>
+      <if test="mxxscc != null" >
+        #{mxxscc},
+      </if>
+      <if test="mxxsxbdm != null" >
+        #{mxxsxbdm},
+      </if>
+      <if test="sfkzapzs != null" >
+        #{sfkzapzs},
+      </if>
+      <if test="cx != null" >
+        #{cx},
+      </if>
+      <if test="bz != null" >
+        #{bz},
+      </if>
+      <if test="clrq != null" >
+        #{clrq},
+      </if>
+      <if test="czlx != null" >
+        #{czlx},
+      </if>
+      <if test="czz != null" >
+        #{czz},
+      </if>
+      <if test="sjly != null" >
+        #{sjly},
+      </if>
+      <if test="sjbbh != null" >
+        #{sjbbh},
+      </if>
+      <if test="scbz != null" >
+        #{scbz},
+      </if>
+      <if test="by1 != null" >
+        #{by1},
+      </if>
+      <if test="by2 != null" >
+        #{by2},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.haibei.pojo.zichan.SSExample" resultType="java.lang.Integer" >
+    select count(*) from T_SS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_SS
+    <set >
+      <if test="record.wid != null" >
+        WID = #{record.wid},
+      </if>
+      <if test="record.pwid != null" >
+        PWID = #{record.pwid},
+      </if>
+      <if test="record.ssbh != null" >
+        SSBH = #{record.ssbh},
+      </if>
+      <if test="record.ssldm != null" >
+        SSLDM = #{record.ssldm},
+      </if>
+      <if test="record.lc != null" >
+        LC = #{record.lc},
+      </if>
+      <if test="record.dy != null" >
+        DY = #{record.dy},
+      </if>
+      <if test="record.fjh != null" >
+        FJH = #{record.fjh},
+      </if>
+      <if test="record.dh != null" >
+        DH = #{record.dh},
+      </if>
+      <if test="record.cws != null" >
+        CWS = #{record.cws},
+      </if>
+      <if test="record.zj != null" >
+        ZJ = #{record.zj},
+      </if>
+      <if test="record.fjlxdm != null" >
+        FJLXDM = #{record.fjlxdm},
+      </if>
+      <if test="record.mxxscc != null" >
+        MXXSCC = #{record.mxxscc},
+      </if>
+      <if test="record.mxxsxbdm != null" >
+        MXXSXBDM = #{record.mxxsxbdm},
+      </if>
+      <if test="record.sfkzapzs != null" >
+        SFKZAPZS = #{record.sfkzapzs},
+      </if>
+      <if test="record.cx != null" >
+        CX = #{record.cx},
+      </if>
+      <if test="record.bz != null" >
+        BZ = #{record.bz},
+      </if>
+      <if test="record.clrq != null" >
+        CLRQ = #{record.clrq},
+      </if>
+      <if test="record.czlx != null" >
+        CZLX = #{record.czlx},
+      </if>
+      <if test="record.czz != null" >
+        CZZ = #{record.czz},
+      </if>
+      <if test="record.sjly != null" >
+        SJLY = #{record.sjly},
+      </if>
+      <if test="record.sjbbh != null" >
+        SJBBH = #{record.sjbbh},
+      </if>
+      <if test="record.scbz != null" >
+        SCBZ = #{record.scbz},
+      </if>
+      <if test="record.by1 != null" >
+        BY1 = #{record.by1},
+      </if>
+      <if test="record.by2 != null" >
+        BY2 = #{record.by2},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_SS
+    set WID = #{record.wid},
+      PWID = #{record.pwid},
+      SSBH = #{record.ssbh},
+      SSLDM = #{record.ssldm},
+      LC = #{record.lc},
+      DY = #{record.dy},
+      FJH = #{record.fjh},
+      DH = #{record.dh},
+      CWS = #{record.cws},
+      ZJ = #{record.zj},
+      FJLXDM = #{record.fjlxdm},
+      MXXSCC = #{record.mxxscc},
+      MXXSXBDM = #{record.mxxsxbdm},
+      SFKZAPZS = #{record.sfkzapzs},
+      CX = #{record.cx},
+      BZ = #{record.bz},
+      CLRQ = #{record.clrq},
+      CZLX = #{record.czlx},
+      CZZ = #{record.czz},
+      SJLY = #{record.sjly},
+      SJBBH = #{record.sjbbh},
+      SCBZ = #{record.scbz},
+      BY1 = #{record.by1},
+      BY2 = #{record.by2}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haibei.pojo.zichan.SS" >
+    update T_SS
+    <set >
+      <if test="pwid != null" >
+        PWID = #{pwid},
+      </if>
+      <if test="ssbh != null" >
+        SSBH = #{ssbh},
+      </if>
+      <if test="ssldm != null" >
+        SSLDM = #{ssldm},
+      </if>
+      <if test="lc != null" >
+        LC = #{lc},
+      </if>
+      <if test="dy != null" >
+        DY = #{dy},
+      </if>
+      <if test="fjh != null" >
+        FJH = #{fjh},
+      </if>
+      <if test="dh != null" >
+        DH = #{dh},
+      </if>
+      <if test="cws != null" >
+        CWS = #{cws},
+      </if>
+      <if test="zj != null" >
+        ZJ = #{zj},
+      </if>
+      <if test="fjlxdm != null" >
+        FJLXDM = #{fjlxdm},
+      </if>
+      <if test="mxxscc != null" >
+        MXXSCC = #{mxxscc},
+      </if>
+      <if test="mxxsxbdm != null" >
+        MXXSXBDM = #{mxxsxbdm},
+      </if>
+      <if test="sfkzapzs != null" >
+        SFKZAPZS = #{sfkzapzs},
+      </if>
+      <if test="cx != null" >
+        CX = #{cx},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz},
+      </if>
+      <if test="clrq != null" >
+        CLRQ = #{clrq},
+      </if>
+      <if test="czlx != null" >
+        CZLX = #{czlx},
+      </if>
+      <if test="czz != null" >
+        CZZ = #{czz},
+      </if>
+      <if test="sjly != null" >
+        SJLY = #{sjly},
+      </if>
+      <if test="sjbbh != null" >
+        SJBBH = #{sjbbh},
+      </if>
+      <if test="scbz != null" >
+        SCBZ = #{scbz},
+      </if>
+      <if test="by1 != null" >
+        BY1 = #{by1},
+      </if>
+      <if test="by2 != null" >
+        BY2 = #{by2},
+      </if>
+    </set>
+    where WID = #{wid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haibei.pojo.zichan.SS" >
+    update T_SS
+    set PWID = #{pwid},
+      SSBH = #{ssbh},
+      SSLDM = #{ssldm},
+      LC = #{lc},
+      DY = #{dy},
+      FJH = #{fjh},
+      DH = #{dh},
+      CWS = #{cws},
+      ZJ = #{zj},
+      FJLXDM = #{fjlxdm},
+      MXXSCC = #{mxxscc},
+      MXXSXBDM = #{mxxsxbdm},
+      SFKZAPZS = #{sfkzapzs},
+      CX = #{cx},
+      BZ = #{bz},
+      CLRQ = #{clrq},
+      CZLX = #{czlx},
+      CZZ = #{czz},
+      SJLY = #{sjly},
+      SJBBH = #{sjbbh},
+      SCBZ = #{scbz},
+      BY1 = #{by1},
+      BY2 = #{by2}
+    where WID = #{wid}
+  </update>
+</mapper>

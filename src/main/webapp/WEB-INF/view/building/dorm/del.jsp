@@ -1,0 +1,2 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+{"statusCode":"200","message":"删除成功","forwardUrl":"${pageContext.request.contextPath}/building/schoolArea","callbackType":"forward"}

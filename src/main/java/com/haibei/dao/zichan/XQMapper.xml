@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haibei.dao.zichan.XQMapper" >
+  <resultMap id="BaseResultMap" type="com.haibei.pojo.zichan.XQ" >
+    <id column="WID" property="wid" jdbcType="DECIMAL" />
+    <result column="XQH" property="xqh" jdbcType="VARCHAR" />
+    <result column="XQDZ" property="xqdz" jdbcType="VARCHAR" />
+    <result column="XQYZBM" property="xqyzbm" jdbcType="VARCHAR" />
+    <result column="XQFZRZGH" property="xqfzrzgh" jdbcType="VARCHAR" />
+    <result column="XQDWFZRZGH" property="xqdwfzrzgh" jdbcType="VARCHAR" />
+    <result column="XQMC" property="xqmc" jdbcType="VARCHAR" />
+    <result column="XQLXDH" property="xqlxdh" jdbcType="VARCHAR" />
+    <result column="XQCZDH" property="xqczdh" jdbcType="VARCHAR" />
+    <result column="CLRQ" property="clrq" jdbcType="TIMESTAMP" />
+    <result column="CZLX" property="czlx" jdbcType="VARCHAR" />
+    <result column="CZZ" property="czz" jdbcType="VARCHAR" />
+    <result column="SJLY" property="sjly" jdbcType="VARCHAR" />
+    <result column="SJBBH" property="sjbbh" jdbcType="DECIMAL" />
+    <result column="SCBZ" property="scbz" jdbcType="VARCHAR" />
+    <result column="BY1" property="by1" jdbcType="VARCHAR" />
+    <result column="BY2" property="by2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    WID, XQH, XQDZ, XQYZBM, XQFZRZGH, XQDWFZRZGH, XQMC, XQLXDH, XQCZDH, CLRQ, CZLX, CZZ, 
+    SJLY, SJBBH, SCBZ, BY1, BY2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.haibei.pojo.zichan.XQExample" >
+    <include refid="common.Oracle_Pagination_Head" />
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from T_XQ
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Oracle_Pagination_Tail" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_XQ
+    where WID = #{wid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from T_XQ
+    where WID = #{wid}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.haibei.pojo.zichan.XQExample" >
+    delete from T_XQ
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.haibei.pojo.zichan.XQ" >
+    insert into T_XQ (WID, XQH, XQDZ, XQYZBM, XQFZRZGH, XQDWFZRZGH, XQMC, 
+      XQLXDH, XQCZDH, CLRQ, CZLX, CZZ, SJLY, SJBBH, SCBZ, BY1, 
+      BY2)
+    values (#{wid}, #{xqh}, #{xqdz}, #{xqyzbm}, #{xqfzrzgh}, #{xqdwfzrzgh}, #{xqmc}, 
+      #{xqlxdh}, #{xqczdh}, #{clrq}, #{czlx}, #{czz}, #{sjly}, #{sjbbh}, #{scbz}, #{by1}, 
+      #{by2})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haibei.pojo.zichan.XQ" >
+    insert into T_XQ
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        WID,
+      </if>
+      <if test="xqh != null" >
+        XQH,
+      </if>
+      <if test="xqdz != null" >
+        XQDZ,
+      </if>
+      <if test="xqyzbm != null" >
+        XQYZBM,
+      </if>
+      <if test="xqfzrzgh != null" >
+        XQFZRZGH,
+      </if>
+      <if test="xqdwfzrzgh != null" >
+        XQDWFZRZGH,
+      </if>
+      <if test="xqmc != null" >
+        XQMC,
+      </if>
+      <if test="xqlxdh != null" >
+        XQLXDH,
+      </if>
+      <if test="xqczdh != null" >
+        XQCZDH,
+      </if>
+      <if test="clrq != null" >
+        CLRQ,
+      </if>
+      <if test="czlx != null" >
+        CZLX,
+      </if>
+      <if test="czz != null" >
+        CZZ,
+      </if>
+      <if test="sjly != null" >
+        SJLY,
+      </if>
+      <if test="sjbbh != null" >
+        SJBBH,
+      </if>
+      <if test="scbz != null" >
+        SCBZ,
+      </if>
+      <if test="by1 != null" >
+        BY1,
+      </if>
+      <if test="by2 != null" >
+        BY2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        #{wid},
+      </if>
+      <if test="xqh != null" >
+        #{xqh},
+      </if>
+      <if test="xqdz != null" >
+        #{xqdz},
+      </if>
+      <if test="xqyzbm != null" >
+        #{xqyzbm},
+      </if>
+      <if test="xqfzrzgh != null" >
+        #{xqfzrzgh},
+      </if>
+      <if test="xqdwfzrzgh != null" >
+        #{xqdwfzrzgh},
+      </if>
+      <if test="xqmc != null" >
+        #{xqmc},
+      </if>
+      <if test="xqlxdh != null" >
+        #{xqlxdh},
+      </if>
+      <if test="xqczdh != null" >
+        #{xqczdh},
+      </if>
+      <if test="clrq != null" >
+        #{clrq},
+      </if>
+      <if test="czlx != null" >
+        #{czlx},
+      </if>
+      <if test="czz != null" >
+        #{czz},
+      </if>
+      <if test="sjly != null" >
+        #{sjly},
+      </if>
+      <if test="sjbbh != null" >
+        #{sjbbh},
+      </if>
+      <if test="scbz != null" >
+        #{scbz},
+      </if>
+      <if test="by1 != null" >
+        #{by1},
+      </if>
+      <if test="by2 != null" >
+        #{by2},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.haibei.pojo.zichan.XQExample" resultType="java.lang.Integer" >
+    select count(*) from T_XQ
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update T_XQ
+    <set >
+      <if test="record.wid != null" >
+        WID = #{record.wid},
+      </if>
+      <if test="record.xqh != null" >
+        XQH = #{record.xqh},
+      </if>
+      <if test="record.xqdz != null" >
+        XQDZ = #{record.xqdz},
+      </if>
+      <if test="record.xqyzbm != null" >
+        XQYZBM = #{record.xqyzbm},
+      </if>
+      <if test="record.xqfzrzgh != null" >
+        XQFZRZGH = #{record.xqfzrzgh},
+      </if>
+      <if test="record.xqdwfzrzgh != null" >
+        XQDWFZRZGH = #{record.xqdwfzrzgh},
+      </if>
+      <if test="record.xqmc != null" >
+        XQMC = #{record.xqmc},
+      </if>
+      <if test="record.xqlxdh != null" >
+        XQLXDH = #{record.xqlxdh},
+      </if>
+      <if test="record.xqczdh != null" >
+        XQCZDH = #{record.xqczdh},
+      </if>
+      <if test="record.clrq != null" >
+        CLRQ = #{record.clrq},
+      </if>
+      <if test="record.czlx != null" >
+        CZLX = #{record.czlx},
+      </if>
+      <if test="record.czz != null" >
+        CZZ = #{record.czz},
+      </if>
+      <if test="record.sjly != null" >
+        SJLY = #{record.sjly},
+      </if>
+      <if test="record.sjbbh != null" >
+        SJBBH = #{record.sjbbh},
+      </if>
+      <if test="record.scbz != null" >
+        SCBZ = #{record.scbz},
+      </if>
+      <if test="record.by1 != null" >
+        BY1 = #{record.by1},
+      </if>
+      <if test="record.by2 != null" >
+        BY2 = #{record.by2},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update T_XQ
+    set WID = #{record.wid},
+      XQH = #{record.xqh},
+      XQDZ = #{record.xqdz},
+      XQYZBM = #{record.xqyzbm},
+      XQFZRZGH = #{record.xqfzrzgh},
+      XQDWFZRZGH = #{record.xqdwfzrzgh},
+      XQMC = #{record.xqmc},
+      XQLXDH = #{record.xqlxdh},
+      XQCZDH = #{record.xqczdh},
+      CLRQ = #{record.clrq},
+      CZLX = #{record.czlx},
+      CZZ = #{record.czz},
+      SJLY = #{record.sjly},
+      SJBBH = #{record.sjbbh},
+      SCBZ = #{record.scbz},
+      BY1 = #{record.by1},
+      BY2 = #{record.by2}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haibei.pojo.zichan.XQ" >
+    update T_XQ
+    <set >
+      <if test="xqh != null" >
+        XQH = #{xqh},
+      </if>
+      <if test="xqdz != null" >
+        XQDZ = #{xqdz},
+      </if>
+      <if test="xqyzbm != null" >
+        XQYZBM = #{xqyzbm},
+      </if>
+      <if test="xqfzrzgh != null" >
+        XQFZRZGH = #{xqfzrzgh},
+      </if>
+      <if test="xqdwfzrzgh != null" >
+        XQDWFZRZGH = #{xqdwfzrzgh},
+      </if>
+      <if test="xqmc != null" >
+        XQMC = #{xqmc},
+      </if>
+      <if test="xqlxdh != null" >
+        XQLXDH = #{xqlxdh},
+      </if>
+      <if test="xqczdh != null" >
+        XQCZDH = #{xqczdh},
+      </if>
+      <if test="clrq != null" >
+        CLRQ = #{clrq},
+      </if>
+      <if test="czlx != null" >
+        CZLX = #{czlx},
+      </if>
+      <if test="czz != null" >
+        CZZ = #{czz},
+      </if>
+      <if test="sjly != null" >
+        SJLY = #{sjly},
+      </if>
+      <if test="sjbbh != null" >
+        SJBBH = #{sjbbh},
+      </if>
+      <if test="scbz != null" >
+        SCBZ = #{scbz},
+      </if>
+      <if test="by1 != null" >
+        BY1 = #{by1},
+      </if>
+      <if test="by2 != null" >
+        BY2 = #{by2},
+      </if>
+    </set>
+    where WID = #{wid}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haibei.pojo.zichan.XQ" >
+    update T_XQ
+    set XQH = #{xqh},
+      XQDZ = #{xqdz},
+      XQYZBM = #{xqyzbm},
+      XQFZRZGH = #{xqfzrzgh},
+      XQDWFZRZGH = #{xqdwfzrzgh},
+      XQMC = #{xqmc},
+      XQLXDH = #{xqlxdh},
+      XQCZDH = #{xqczdh},
+      CLRQ = #{clrq},
+      CZLX = #{czlx},
+      CZZ = #{czz},
+      SJLY = #{sjly},
+      SJBBH = #{sjbbh},
+      SCBZ = #{scbz},
+      BY1 = #{by1},
+      BY2 = #{by2}
+    where WID = #{wid}
+  </update>
+</mapper>
