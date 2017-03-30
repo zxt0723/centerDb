@@ -82,7 +82,7 @@ public class SSExample {
     }
 
     public int getRowsPerPage() {
-        return rowsPerPage;
+        return rowsPerPage==-1?100:rowsPerPage;
     }
 
     protected abstract static class GeneratedCriteria {

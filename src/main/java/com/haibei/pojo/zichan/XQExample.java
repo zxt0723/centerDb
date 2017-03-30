@@ -13,7 +13,7 @@ public class XQExample {
 
     protected int limitStart = -1;
 
-    protected int rowsPerPage = -1;
+    protected int rowsPerPage = 100;
 
     public XQExample() {
         oredCriteria = new ArrayList<Criteria>();

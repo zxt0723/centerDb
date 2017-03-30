@@ -77,7 +77,9 @@ function ajaxTodo(url, callback) {
 function validateCallback(form, callback, confirmMsg) {
 
 	var $form = $(form);
-
+	if (!$form.valid()) {
+		return false;
+	}
 	var _submitFn = function() {
 		// $form.find(':focus').blur();
 		var params = $form.serialize();

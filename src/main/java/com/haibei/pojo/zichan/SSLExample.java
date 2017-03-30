@@ -13,7 +13,7 @@ public class SSLExample {
 
     protected int limitStart = -1;
 
-    protected int rowsPerPage = -1;
+    protected int rowsPerPage = 100;
 
     public SSLExample() {
         oredCriteria = new ArrayList<Criteria>();

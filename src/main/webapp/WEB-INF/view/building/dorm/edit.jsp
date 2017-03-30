@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <h2>校区管理</h2>
 <div class="operate panel panel-default">
 	<div class="panel-body">
@@ -23,70 +25,113 @@
                             <div class="panel panel-default toggle">
                                 <!-- Start .panel -->
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">校区信息</h3>
+                                    <h3 class="panel-title">宿舍信息</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <form class="form-horizontal group-border hover-stripped" role="form" method="post" action="${pageContext.request.contextPath}/building/schoolArea/save" onsubmit="return validateCallback(this, navTabAjaxDone);">
+                                    <form class="form-horizontal group-border hover-stripped" role="form" method="post" action="${pageContext.request.contextPath}/building/dorm/save" onsubmit="return validateCallback(this, navTabAjaxDone);">
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">校区编号</label>
+                                            <label class="col-lg-2 control-label">宿舍编号</label>
                                             <div class="col-lg-10">
-                                           		<input type="hidden" name="xq.wid"  value="${xq.wid}" >
-                                                <input type="text" class="form-control" name="xq.xqh" required="required"  value="${xq.xqh}"  placeholder="请填写校区编号">
+                                           		<input type="hidden" name="ss.wid"  value="${ss.wid}" >
+                                                <input type="text" class="form-control" name="ss.ssbh" required="required"  value="${ss.ssbh}"  placeholder="请填写校区编号">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">宿舍楼代码</label>
+                                            <div class="col-lg-10">
+                                           		<input type="hidden" name="ss.pwid"  value="${ss.pwid}" >
+                                                <input type="text" class="form-control" name="ss.ssldm" required="required"  value="${ss.ssldm}"  placeholder="请填写校区编号">
                                             </div>
                                         </div>
                                         
                                         <!-- End .form-group  -->
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">校区名称</label>
+                                            <label class="col-lg-2 control-label">楼层</label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" name="xq.xqmc" required="required" value="${xq.xqmc}" placeholder="请填写校区名称">
+                                                <input type="text" class="form-control" name="ss.lc" required="required" value="${ss.lc}" placeholder="请填写校区名称">
                                             </div>
                                         </div>
                                         <!-- End .form-group  -->
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">行政负责人职工号</label>
+                                            <label class="col-lg-2 control-label">单元</label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" name="xq.xqfzrzgh" required="required" value="${xq.xqfzrzgh}" placeholder="请填写校区行政负责人职工号">
+                                                <input type="text" class="form-control" name="ss.dy" required="required" value="${ss.dy}" placeholder="请填写校区行政负责人职工号">
                                          
                                             </div>
                                         </div>
                                         <!-- End .form-group  -->
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">党委负责人职工号</label>
+                                            <label class="col-lg-2 control-label">房间号</label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" name="xq.xqdwfzrzgh" required="required" value="${xq.xqdwfzrzgh}" placeholder="请填写校区党委负责人职工号">
+                                                <input type="text" class="form-control" name="ss.fjh" required="required" value="${ss.fjh}" placeholder="请填写校区党委负责人职工号">
                                          
                                             </div>
                                         </div>
                                         <!-- End .form-group  -->
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">邮政编码</label>
+                                            <label class="col-lg-2 control-label">电话</label>
                                             <div class="col-lg-10">
-                                               <input type="text" class="form-control" name="xq.xqyzbm" required="required" value="${xq.xqyzbm}" placeholder="请填写校区邮政编码">
+                                               <input type="text" class="form-control" name="ss.dh" required="required" value="${ss.dh}" placeholder="请填写校区邮政编码">
                                          
                                             </div>
                                         </div>
                                         <!-- End .form-group  -->
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">地址</label>
+                                            <label class="col-lg-2 control-label">床位数</label>
                                             <div class="col-lg-10">
-                                                 <input type="text" class="form-control" name="xq.xqdz" required="required" value="${xq.xqdz}" placeholder="请填写校区地址">
+                                                 <input type="text" class="form-control" name="ss.cws" required="required" value="${ss.cws}" placeholder="请填写校区地址">
                                          
                                             </div>
                                         </div>
                                          <!-- End .form-group  -->
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">联系电话</label>
+                                            <label class="col-lg-2 control-label">租金</label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" name="xq.xqlxdh" required="required" value="${xq.xqlxdh}" placeholder="请填写校区联系电话">
+                                                <input type="text" class="form-control" name="ss.zj" required="required" value="${ss.zj}" placeholder="请填写校区联系电话">
                                          
                                             </div>
                                         </div>
                                          <!-- End .form-group  -->
                                         <div class="form-group">
-                                            <label class="col-lg-2 control-label">校区传真</label>
+                                            <label class="col-lg-2 control-label">房间类型(代码)</label>
                                             <div class="col-lg-10">
-                                                 <input type="text" class="form-control" name="xq.xqczdh" required="required" value="${xq.xqczdh}" placeholder="请填写校区传真号码">
+                                                 <input type="text" class="form-control" name="ss.fjlxdm" required="required" value="${ss.fjlxdm}" placeholder="请填写校区传真号码">
+                                            </div>
+                                        </div>
+                                          <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">面向学生层次</label>
+                                            <div class="col-lg-10">
+                                                 <input type="text" class="form-control" name="ss.mxxscc" required="required" value="${ss.mxxscc}" placeholder="请填写校区传真号码">
+                                            </div>
+                                        </div>
+                                          <!-- End .form-group  -->
+                                        <div class="form-group">
+                                            <label class="col-lg-2 control-label">面向学生性别代码</label>
+                                            <div class="col-lg-10">
+                                                 <input type="text" class="form-control" name="ss.mxxsxbdm" required="required" value="${ss.mxxsxbdm}" placeholder="请填写校区传真号码">
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                         <div class="form-group">
+                                            <label class="col-lg-2 control-label">是否可用</label>
+                                            <div class="col-lg-10">
+                                                 <input type="text" class="form-control" name="ss.sfkzapzs" required="required" value="${ss.sfkzapzs}" placeholder="请填写校区传真号码">
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                         <div class="form-group">
+                                            <label class="col-lg-2 control-label">朝向</label>
+                                            <div class="col-lg-10">
+                                                 <input type="text" class="form-control" name="ss.cx" required="required" value="${ss.cx}" placeholder="请填写校区传真号码">
+                                            </div>
+                                        </div>
+                                        <!-- End .form-group  -->
+                                         <div class="form-group">
+                                            <label class="col-lg-2 control-label">备注</label>
+                                            <div class="col-lg-10">
+                                                 <input type="text" class="form-control" name="ss.bz" required="required" value="${ss.bz}" placeholder="请填写校区传真号码">
                                             </div>
                                         </div>
                                         <!-- End .form-group  -->

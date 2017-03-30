@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.haibei.pojo.zichan.SS;
+import com.haibei.pojo.zichan.SSL;
 import com.haibei.pojo.zichan.XQ;
 import com.haibei.service.zichan.SSLService;
+import com.haibei.service.zichan.SSService;
 import com.haibei.service.zichan.XQService;
 
 @Controller
@@ -29,15 +32,21 @@ public class BuildingServiceController {
 	XQService xQservice;
 	@Resource
 	SSLService sSLservice;
+	@Resource
+	SSService sSservice;
 
 	// 绑定变量名字和属性，参数封装进类
 	@InitBinder("xq")
 	public void initBinderXq(WebDataBinder binder) {
 		binder.setFieldDefaultPrefix("xq.");
 	}
-	@InitBinder("dormBbulilding")
-	public void initBinderDormBuilding(WebDataBinder binder) {
-		binder.setFieldDefaultPrefix("dormBbulilding.");
+	@InitBinder("ssl")
+	public void initBinderSsl(WebDataBinder binder) {
+		binder.setFieldDefaultPrefix("ssl.");
+	}
+	@InitBinder("ss")
+	public void initBinderSs(WebDataBinder binder) {
+		binder.setFieldDefaultPrefix("ss.");
 	}
 
 	/*
@@ -119,13 +128,13 @@ public class BuildingServiceController {
 	 */
 	@RequestMapping(value = "/dormBuilding/edit", method = RequestMethod.GET)
 	public String dormBuildingEdit(@RequestParam(value = "id", required = false) Long id, ModelMap model) {
-		XQ xq;
+		SSL ssl;
 		if (id == null) {
-			xq = new XQ();
+			ssl = new SSL();
 		} else {
-			xq = this.xQservice.selectByPrimaryKey(id);
+			ssl = this.sSLservice.selectByPrimaryKey(id);
 		}
-		model.put("xq", xq);
+		model.put("ssl", ssl);
 
 		return "building/dormBuilding/edit";
 	}
@@ -134,13 +143,13 @@ public class BuildingServiceController {
 	 * 宿舍楼保存
 	 */
 	@RequestMapping(value = "/dormBuilding/save", method = RequestMethod.POST)
-	public String dormBuildingSave(@ModelAttribute("xq") XQ xq, ModelMap model) {
+	public String dormBuildingSave(@ModelAttribute("ssl") SSL ssl, ModelMap model) {
 		// xQservice.deleteByPrimaryKey(id);
 		// System.out.println(xq.getXqmc());
-		if (xq.getWid() == null || xq.getWid().equals(0)) {
-			this.xQservice.insertSelective(xq);
+		if (ssl.getWid() == null || ssl.getWid().equals(0)) {
+			this.sSLservice.insertSelective(ssl);
 		} else {
-			this.xQservice.updateByPrimaryKeySelective(xq);
+			this.sSLservice.updateByPrimaryKeySelective(ssl);
 		}
 		return "building/dormBuilding/save";
 	}
@@ -154,7 +163,7 @@ public class BuildingServiceController {
 	public String dormList(ModelMap model) {
 
 		// List<XQ> xqList=xQservice.selectByExample(null);
-		model.put("xqList", xQservice.selectByExample(null));
+		model.put("list", sSservice.selectByExample(null));
 		return "building/dorm/list";
 	}
 
@@ -173,13 +182,13 @@ public class BuildingServiceController {
 	 */
 	@RequestMapping(value = "/dorm/edit", method = RequestMethod.GET)
 	public String dormEdit(@RequestParam(value = "id", required = false) Long id, ModelMap model) {
-		XQ xq;
+		SS ss;
 		if (id == null) {
-			xq = new XQ();
+			ss = new SS();
 		} else {
-			xq = this.xQservice.selectByPrimaryKey(id);
+			ss = this.sSservice.selectByPrimaryKey(id);
 		}
-		model.put("xq", xq);
+		model.put("ss", ss);
 
 		return "building/dorm/edit";
 	}
@@ -188,13 +197,13 @@ public class BuildingServiceController {
 	 * 宿舍保存
 	 */
 	@RequestMapping(value = "/dorm/save", method = RequestMethod.POST)
-	public String dormSave(@ModelAttribute("xq") XQ xq, ModelMap model) {
+	public String dormSave(@ModelAttribute("ss") SS ss, ModelMap model) {
 		// xQservice.deleteByPrimaryKey(id);
 		// System.out.println(xq.getXqmc());
-		if (xq.getWid() == null || xq.getWid().equals(0)) {
-			this.xQservice.insertSelective(xq);
+		if (ss.getWid() == null || ss.getWid().equals(0)) {
+			this.sSservice.insertSelective(ss);
 		} else {
-			this.xQservice.updateByPrimaryKeySelective(xq);
+			this.sSservice.updateByPrimaryKeySelective(ss);
 		}
 		return "building/dorm/save";
 	}

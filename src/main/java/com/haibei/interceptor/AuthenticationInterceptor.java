@@ -38,8 +38,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 				
 				return true;
 			}else{
-				 resMap.put("code", "300");
-				 resMap.put("msg","Î´ÊÚÈ¨");
+				 resMap.put("statusCode", "300");
+				 resMap.put("message","Î´ÊÚÈ¨");
 				return false;
 			}
 			
@@ -58,8 +58,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 	 */
 	private boolean checkParam(Map<String, String[]> paramMap, Map<String, Object> resMap) {
 		if (paramMap.get("sysId") == null) {
-			resMap.put("code", "400");
-			resMap.put("msg", "ÇëÊäÈësysId");
+			resMap.put("statusCode", "400");
+			resMap.put("message", "ÇëÊäÈësysId");
 			return false;
 		}
 
