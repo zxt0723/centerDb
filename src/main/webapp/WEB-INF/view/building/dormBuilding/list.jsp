@@ -6,7 +6,7 @@
 
 <div class="operate panel panel-default">
 
-	<form id="pagerForm" method="post" action="http://localhost:8088/centerDb/building/dormBuilding" onsubmit="return pageBreak();">
+	<form id="pagerForm" method="post" action="${pageContext.request.contextPath}/building/dormBuilding" onsubmit="return pageBreak();">
 		<input type="hidden" name="pageNum" value="${page.pageNum}" />
 		<input type="hidden" name="numPerPage" value="${page.numPerPage}" /> 
 		<input type="hidden" name="orderField" value="${page.orderField}" />
