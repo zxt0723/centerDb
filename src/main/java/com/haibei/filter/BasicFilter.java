@@ -30,13 +30,13 @@ public class BasicFilter implements Filter {
 
 //2 响应类型  响应方法
 
- response.addHeader("Access-Control-Allow-Methods", "POST, OPTIONS"); 
+ response.addHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS"); 
 
    // 响应头设置 
 
  response.addHeader("Access-Control-Allow-Headers", "POWERED-BY-FANTONG");
 
-   response.addHeader("Access-Control-Max-Age", "30");   
+ response.addHeader("Access-Control-Max-Age", "30");   
  
  
  // 需要过滤的代码
