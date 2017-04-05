@@ -64,6 +64,18 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <filter>
+  <filter-name>basicFilter</filter-name>
+  <filter-class>com.haibei.filter.BasicFilter</filter-class>
+  <init-param>
+   <param-name>encoding</param-name>
+   <param-value>UTF-8</param-value>
+  </init-param>
+ </filter>
+ <filter-mapping>
+  <filter-name>basicFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+ </filter-mapping>
    <!-- Shiro Filter -->
   <!--  
   <filter>
