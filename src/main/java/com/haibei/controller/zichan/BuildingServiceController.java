@@ -1,5 +1,6 @@
 package com.haibei.controller.zichan;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.haibei.core.Page;
 import com.haibei.pojo.zichan.SS;
 import com.haibei.pojo.zichan.SSL;
+import com.haibei.pojo.zichan.SSLExample;
+import com.haibei.pojo.zichan.SSLExample.Criteria;
 import com.haibei.pojo.zichan.XQ;
 import com.haibei.service.zichan.SSLService;
 import com.haibei.service.zichan.SSService;
@@ -40,14 +44,24 @@ public class BuildingServiceController {
 	public void initBinderXq(WebDataBinder binder) {
 		binder.setFieldDefaultPrefix("xq.");
 	}
+
 	@InitBinder("ssl")
 	public void initBinderSsl(WebDataBinder binder) {
 		binder.setFieldDefaultPrefix("ssl.");
 	}
+
 	@InitBinder("ss")
 	public void initBinderSs(WebDataBinder binder) {
 		binder.setFieldDefaultPrefix("ss.");
 	}
+	// @InitBinder("page")
+	// public void initBinderPage(WebDataBinder binder) {
+	// binder.setFieldDefaultPrefix("page.");
+	// }
+	// @InitBinder("conditions")
+	// public void initBinderConditions(WebDataBinder binder) {
+	// binder.setFieldDefaultPrefix("conditions.");
+	// }
 
 	/*
 	 * 校区管理
@@ -101,15 +115,29 @@ public class BuildingServiceController {
 		return "building/schoolArea/save";
 	}
 
-	
 	/*
 	 * 宿舍楼管理
 	 */
-	@RequestMapping(value = "/dormBuilding", method = RequestMethod.GET)
-	public String dormBuildingList(ModelMap model) {
+	@RequestMapping(value = "/dormBuilding")
+	public String dormBuildingList(@ModelAttribute("page") Page page, ModelMap model) {
 
 		// List<XQ> xqList=xQservice.selectByExample(null);
-		model.put("list", sSLservice.selectByExample(null));
+		SSLExample example = new SSLExample();
+		Criteria criteria = example.createCriteria();
+		if (page.getConditions() != null) {
+			if (page.getConditions().get("sslmc") != null && !page.getConditions().get("sslmc").equals("")) {
+				criteria.andSslmcLike("%" + page.getConditions().get("sslmc") + "%");
+			}
+		}
+		page.setTotalCount(sSLservice.countByExample(example));
+		example.setRowsPerPage(page.getNumPerPage());
+		example.setLimitStart((page.getPageNum() - 1) * page.getNumPerPage());
+
+		model.put("list", sSLservice.selectByExample(example));
+
+		System.out.println(page.getPageNum());
+		model.put("page", page);
+
 		return "building/dormBuilding/list";
 	}
 
@@ -153,9 +181,7 @@ public class BuildingServiceController {
 		}
 		return "building/dormBuilding/save";
 	}
-	
-	
-	
+
 	/*
 	 * 宿舍管理
 	 */
@@ -207,8 +233,5 @@ public class BuildingServiceController {
 		}
 		return "building/dorm/save";
 	}
-
-	
-
 
 }

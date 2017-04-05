@@ -155,7 +155,7 @@ $(document).ready(function() {
     });
     $('.tags1').tagsInput({width: 'auto'});
  //
-   initMy();
+  // initMy();
    
  
    //setInterval("initUI()",1000);	
