@@ -72,6 +72,20 @@
 				<div class="pull-left">
 					<div class="dataTables_info" id="tabletools_info" role="status" aria-live="polite">
 						<span>显示</span> <select class="combox" name="numPerPage" onchange="pageBreak({numPerPage:this.value})">
+						<c:choose>
+   <c:when test="${page.numPerPage==20}">  
+        <option value="20" checked>20</option>      
+   </c:when>
+    <c:when test="${page.numPerPage==50}">  
+        <option value="20" checked>50</option>      
+   </c:when>
+  <c:when test="${page.numPerPage==100}">  
+        <option value="20" checked>100</option>      
+   </c:when>
+   <c:when test="${page.numPerPage==200}">  
+        <option value="20" checked>200</option>      
+   </c:when>
+</c:choose>
 							<option value="20">20</option>
 							<option value="50">50</option>
 							<option value="100">100</option>

@@ -237,10 +237,10 @@ function _getPagerForm(args) {
 	var form = $("#pagerForm").get(0);
 
 	if (form&&args) {
-		alert(form["pageNum"].value);
-		alert(args["pageNum"]);
+		//alert(form["pageNum"].value);
+		//alert(args["pageNum"]);
 		if (args["pageNum"]) form["pageNum"].value = args["pageNum"];
-		alert(form["pageNum"].value);
+		//alert(form["pageNum"].value);
 		if (args["numPerPage"]) form["numPerPage"].value = args["numPerPage"];
 		if (args["orderField"]) form["orderField"].value = args["orderField"];
 		if (args["orderDirection"] && form["orderDirection"]) form["orderDirection"].value = args["orderDirection"];
